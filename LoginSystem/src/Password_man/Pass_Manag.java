@@ -107,7 +107,10 @@ public class Pass_Manag {
 		JButton btnAddMoreApplication = new JButton("Add More Application");
 		btnAddMoreApplication.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				Applica.setText(null);
+				Username1.setText(null);
+				Password2.setText(null);
+				urllink.setText(null);
 			}
 		});
 		btnAddMoreApplication.setBounds(23, 205, 226, 25);

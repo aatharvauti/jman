@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import Creat_Acc.Create_Account;
 import Password_man.Pass_Manag;
 
 import javax.swing.JPasswordField;
@@ -85,7 +86,6 @@ public class Login_S {
 					
 					Pass_Manag info = new Pass_Manag();
 					Pass_Manag.main(null);
-					
 				}
 				
 				else {
@@ -99,6 +99,12 @@ public class Login_S {
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Create Account");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Create_Account create = new Create_Account();
+				Create_Account.main(null);
+			}
+		});
 		btnNewButton_1.setBounds(225, 190, 175, 25);
 		frame.getContentPane().add(btnNewButton_1);
 	}
