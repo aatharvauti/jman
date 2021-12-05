@@ -80,6 +80,8 @@ public class Login_S {
 				String password = txtPassword.getText();
 				String usrname = txtUsername.getText();
 				
+				
+				
 				if(password.contains("JavaProject") && usrname.contains("Vivek")){
 					txtPassword.setText(null);
 					txtUsername.setText(null);

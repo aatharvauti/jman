@@ -13,7 +13,12 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.sql.*;
+
+
 public class Create_Account {
+
+	Connection con = null;
 
 	private JFrame frame;
 	private JTextField firstname;
@@ -111,30 +116,6 @@ public class Create_Account {
 		frame.getContentPane().add(mail);
 		mail.setColumns(10);
 		
-		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String passwor = pass.getText();
-				String confpasswor = confpass.getText();
-				if(passwor.contentEquals(confpasswor)) {
-					pass.setText(null);
-					confpass.setText(null);
-					firstname.setText(null);
-					secondname.setText(null);
-					Dateofbirth.setText(null);
-					mail.setText(null);
-					
-				}
-				else {
-					JOptionPane.showMessageDialog(null,"Please re-enter the password","Password Error",JOptionPane.ERROR_MESSAGE);
-					pass.setText(null);
-					confpass.setText(null);
-			}
-		}
-		});
-		btnSubmit.setBounds(277, 230, 117, 25);
-		frame.getContentPane().add(btnSubmit);
-		
 		pass = new JPasswordField();
 		pass.setBounds(100, 149, 203, 19);
 		frame.getContentPane().add(pass);
@@ -146,5 +127,59 @@ public class Create_Account {
 		confpass = new JPasswordField();
 		confpass.setBounds(491, 149, 187, 19);
 		frame.getContentPane().add(confpass);
+		
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String passwor = pass.getText();
+				String confpasswor = confpass.getText();
+				if(passwor.contentEquals(confpasswor)) {
+					
+					try
+				    {
+				        Class.forName("com.mysql.jdbc.Driver");
+				  
+				        Connection con = DriverManager.getConnection(
+				            "jdbc:mysql://localhost:3306/loginsystem", "root", "D4v13504wm");
+
+				        Statement stmt = con.createStatement();  
+
+//				        ResultSet rs = stmt.executeQuery("select * from loginsystemtable");
+				        String username = Usern.getText();
+				        String password = pass.getText();
+				        stmt.executeUpdate("INSERT INTO `loginsystemtable` (`id`, `username`, `password`) VALUES (NULL, '"+username+"', '"+password+"');"); 
+
+
+//				        while(rs.next())  
+//				        	System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
+//				        
+				        con.close();
+				        Usern.setText(null);
+						pass.setText(null);
+						confpass.setText(null);
+						firstname.setText(null);
+						secondname.setText(null);
+						Dateofbirth.setText(null);
+						mail.setText(null);
+
+				    }
+
+				    catch (SQLException | ClassNotFoundException e)
+				    {
+				        System.out.println(e);
+				    }
+
+					
+					
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"Please re-enter the password","Password Error",JOptionPane.ERROR_MESSAGE);
+					pass.setText(null);
+					confpass.setText(null);
+			}
+		}
+		});
+		btnSubmit.setBounds(277, 230, 117, 25);
+		frame.getContentPane().add(btnSubmit);
 	}
 }
