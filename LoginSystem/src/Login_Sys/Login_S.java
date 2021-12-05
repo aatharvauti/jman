@@ -13,9 +13,16 @@ import Password_man.Pass_Manag;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
 public class Login_S {
+
+	Connection con = null;
 
 	private JFrame frame;
 	private JTextField txtUsername;
@@ -77,24 +84,64 @@ public class Login_S {
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+
 				String password = txtPassword.getText();
 				String usrname = txtUsername.getText();
-				
-				
-				
-				if(password.contains("JavaProject") && usrname.contains("Vivek")){
-					txtPassword.setText(null);
-					txtUsername.setText(null);
-					
-					Pass_Manag info = new Pass_Manag();
-					Pass_Manag.main(null);
-				}
-				
-				else {
-					JOptionPane.showMessageDialog(null,"Invalid Login Details","Login Error",JOptionPane.ERROR_MESSAGE);
-					txtPassword.setText(null);
-					txtUsername.setText(null);
-				}
+
+				try
+			    {
+
+					Class.forName("com.mysql.jdbc.Driver");
+			  
+			        Connection con = DriverManager.getConnection(
+			            "jdbc:mysql://localhost:3306/loginsystem", "root", "D4v13504wm");
+
+			        Statement stmt = con.createStatement();
+			        String sql = "SELECT * from `loginsystemtable` WHERE username='"+usrname+"' and password='"+password+"'";
+			        ResultSet rs = stmt.executeQuery(sql);
+
+			        while (rs.next())
+			        {
+			            if (usrname.equals(rs.getString("username")))
+			            {
+			                if (password.equals(rs.getString("password")))
+			                {
+			                	txtPassword.setText(null);
+								txtUsername.setText(null);
+								Pass_Manag info = new Pass_Manag();
+								Pass_Manag.main(null);
+			                }
+                            else
+                            {
+                            	JOptionPane.showMessageDialog(null,"Invalid Password","Login Error",JOptionPane.ERROR_MESSAGE);
+                            	txtPassword.setText(null);
+                            	txtUsername.setText(null);
+                      	    }
+			            }
+			            else
+			            {
+			            	JOptionPane.showMessageDialog(null,"Invalid Username","Login Error",JOptionPane.ERROR_MESSAGE);
+			                txtPassword.setText(null);
+                        	txtUsername.setText(null);
+			            }
+		            }
+			    
+			        
+			        
+			        
+			        con.close();
+			        
+//			        txtPassword.setText(null);
+//					txtUsername.setText(null);
+//					
+//					Pass_Manag info = new Pass_Manag();
+//					Pass_Manag.main(null);
+			    }
+
+			    catch (SQLException | ClassNotFoundException e)
+			    {
+			        System.out.println(e);
+			    }
 			}
 		});
 		btnNewButton.setBounds(45, 190, 117, 25);
