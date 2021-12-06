@@ -1,4 +1,4 @@
-package Creat_Acc;
+package register;
 
 import java.awt.EventQueue;
 
@@ -15,8 +15,7 @@ import java.awt.event.ActionListener;
 
 import java.sql.*;
 
-
-public class Create_Account {
+public class Register {
 
 	Connection con = null;
 
@@ -29,14 +28,13 @@ public class Create_Account {
 	private JPasswordField pass;
 	private JPasswordField confpass;
 
-	/**
-	 * Launch the application.
-	 */
+// Launch the Application
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Create_Account window = new Create_Account();
+					Register window = new Register();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,17 +43,13 @@ public class Create_Account {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public Create_Account() {
+	public Register() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
+// Init
+
+	public void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.ORANGE);
 		frame.setBounds(200, 200, 700, 300);
@@ -67,9 +61,9 @@ public class Create_Account {
 		lblNewLabel.setBounds(277, 12, 117, 15);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblUsrname = new JLabel("Username");
-		lblUsrname.setBounds(12, 110, 82, 15);
-		frame.getContentPane().add(lblUsrname);
+		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setBounds(12, 110, 82, 15);
+		frame.getContentPane().add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setBounds(12, 151, 70, 15);
@@ -82,13 +76,13 @@ public class Create_Account {
 		JLabel lblFirstName = new JLabel("Name");
 		lblFirstName.setBounds(12, 39, 82, 15);
 		frame.getContentPane().add(lblFirstName);
-		
+
+		// JTextField
 		
 		firstname = new JTextField();
 		firstname.setBounds(94, 39, 209, 19);
 		frame.getContentPane().add(firstname);
 		firstname.setColumns(10);
-		
 		
 		Usern = new JTextField();
 		Usern.setBounds(94, 110, 209, 19);
@@ -112,15 +106,15 @@ public class Create_Account {
 		confpass.setBounds(491, 149, 187, 19);
 		frame.getContentPane().add(confpass);
 		
-		JButton btnNewButton = new JButton("Back");
-		btnNewButton.setBounds(281, 230, 117, 25);
-		frame.getContentPane().add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Login_S Baack = new Login_S();
-				Login_S.main(null);
-		}
-		});
+//		JButton btnNewButton = new JButton("Back");
+//		btnNewButton.setBounds(281, 230, 117, 25);
+//		frame.getContentPane().add(btnNewButton);
+//		btnNewButton.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//				Login_S Back = new Login_S();
+//				Login_S.main(null);
+//		}
+//		});
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
@@ -138,9 +132,9 @@ public class Create_Account {
 
 				        Statement stmt = con.createStatement();  
 
-//				        ResultSet rs = stmt.executeQuery("select * from loginsystemtable");
 				        String username = Usern.getText();
 				        String password = pass.getText();
+
 				        stmt.executeUpdate("INSERT INTO `loginsystemtable` (`id`, `username`, `password`) VALUES (NULL, '"+username+"', '"+password+"');"); 
 
 

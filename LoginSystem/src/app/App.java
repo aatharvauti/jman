@@ -1,4 +1,4 @@
-package Password_man;
+package app;
 
 import java.awt.EventQueue;
 
@@ -6,16 +6,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import Display_data.displ;
+import vault.Vault;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JSeparator;
 import java.awt.Color;
 import java.awt.Font;
 
-public class Pass_Manag {
+public class App {
 
 	private JFrame frame;
 	private JTextField Applica;
@@ -31,7 +30,7 @@ public class Pass_Manag {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Pass_Manag window = new Pass_Manag();
+					App window = new App();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +42,7 @@ public class Pass_Manag {
 	/**
 	 * Create the application.
 	 */
-	public Pass_Manag() {
+	public App() {
 		initialize();
 	}
 
@@ -120,8 +119,8 @@ public class Pass_Manag {
 		JButton Displaycon = new JButton("Display Content");
 		Displaycon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				displ Display = new displ();
-				displ.main(null);
+				Vault Display = new Vault();
+				Vault.main(null);
 				
 				
 				

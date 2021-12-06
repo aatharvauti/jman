@@ -1,13 +1,12 @@
-package Display_data;
+package vault;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
-import Password_man.Pass_Manag;
-
-public class displ {
+public class Vault {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -25,7 +24,7 @@ public class displ {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					displ window = new displ();
+					Vault window = new Vault();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +36,7 @@ public class displ {
 	/**
 	 * Create the application.
 	 */
-	public displ() {
+	public Vault() {
 		initialize();
 	}
 

@@ -1,26 +1,26 @@
-package Login_Sys;
+package login;
+
+import app.App;
+import register.Register;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
-import Creat_Acc.Create_Account;
-import Password_man.Pass_Manag;
-
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.awt.event.ActionEvent;
 
-public class Login_S {
+public class Login {
 
 	Connection con = null;
 
@@ -28,14 +28,14 @@ public class Login_S {
 	private JTextField txtUsername;
 	private JPasswordField txtPassword;
 
-	/**
-	 * Launch the application.
-	 */
+
+// Launch the application.
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login_S window = new Login_S();
+					Login window = new Login();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,16 +44,14 @@ public class Login_S {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public Login_S() {
+ //Create the application.
+	
+	public Login() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+//Initialize the contents of the frame.
+	
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(200, 200, 500, 300);
@@ -102,40 +100,23 @@ public class Login_S {
 
 			        while (rs.next())
 			        {
-			            if (usrname.equals(rs.getString("username")))
+			            if (usrname.equals(rs.getString("username")) && password.equals(rs.getString("password")))
 			            {
-			                if (password.equals(rs.getString("password")))
-			                {
-			                	txtPassword.setText(null);
-								txtUsername.setText(null);
-								Pass_Manag info = new Pass_Manag();
-								Pass_Manag.main(null);
-			                }
-                            else
-                            {
-                            	JOptionPane.showMessageDialog(null,"Invalid Password","Login Error",JOptionPane.ERROR_MESSAGE);
-                            	txtPassword.setText(null);
-                            	txtUsername.setText(null);
-                      	    }
-			            }
-			            else
-			            {
-			            	JOptionPane.showMessageDialog(null,"Invalid Username","Login Error",JOptionPane.ERROR_MESSAGE);
-			                txtPassword.setText(null);
-                        	txtUsername.setText(null);
-			            }
+		                	txtPassword.setText(null);
+							txtUsername.setText(null);
+							App info = new App();
+							App.main(null);
+		                }
+                        else
+                        {
+                        	System.out.println("PASS");
+        					JOptionPane.showMessageDialog(null,"Invalid Login Details PASS","Login Error",JOptionPane.ERROR_MESSAGE);
+        					txtPassword.setText(null);
+        					txtUsername.setText(null);
+                  	    }
 		            }
 			    
-			        
-			        
-			        
 			        con.close();
-			        
-//			        txtPassword.setText(null);
-//					txtUsername.setText(null);
-//					
-//					Pass_Manag info = new Pass_Manag();
-//					Pass_Manag.main(null);
 			    }
 
 			    catch (SQLException | ClassNotFoundException e)
@@ -144,16 +125,18 @@ public class Login_S {
 			    }
 			}
 		});
+
 		btnNewButton.setBounds(45, 190, 117, 25);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Create Account");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Create_Account create = new Create_Account();
-				Create_Account.main(null);
+				Register create = new Register();
+				Register.main(null);
 			}
 		});
+
 		btnNewButton_1.setBounds(225, 190, 175, 25);
 		frame.getContentPane().add(btnNewButton_1);
 	}
