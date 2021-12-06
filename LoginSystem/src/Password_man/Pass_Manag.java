@@ -113,25 +113,15 @@ public class Pass_Manag {
 				urllink.setText(null);
 			}
 		});
+		
 		btnAddMoreApplication.setBounds(23, 205, 226, 25);
 		frame.getContentPane().add(btnAddMoreApplication);
 		
 		JButton Displaycon = new JButton("Display Content");
-		//Displaycon.addActionListener(e -> DisplayField.setVisible(true));
 		Displaycon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//String applic = Applica.getText();
-				//String user = Username1.getText();
-				//String Pass = Password2.getText();
-				//String url = urllink.getText();
-				DisplayField.setText(Applica.getText());
-				DisplayField.setVisible(true);
-				usern.setText(Username1.getText());
-				usern.setVisible(true);
-				pass.setText(Password2.getText());
-				pass.setVisible(true);
-				url.setText(urllink.getText());
-				url.setVisible(true);
+				displ Display = new displ();
+				displ.main(null);
 				
 				
 				
@@ -140,24 +130,8 @@ public class Pass_Manag {
 		
 		
 		Displaycon.setBounds(293, 205, 155, 25);
-		DisplayField.setBounds(267, 39, 185, 19);
-		DisplayField.setVisible(false);
-		frame.getContentPane().add(DisplayField);
 		frame.getContentPane().add(Displaycon);
 		
-		
-		usern.setBounds(267, 77, 155, 15);
-		usern.setVisible(false);
-		frame.getContentPane().add(usern);
-		
-
-		pass.setBounds(267, 115, 155, 15);
-		pass.setVisible(false);
-		frame.getContentPane().add(pass);
-		
-		url.setBounds(267, 161, 595, 15);
-		url.setVisible(false);
-		frame.getContentPane().add(url);
 		
 	}
 }

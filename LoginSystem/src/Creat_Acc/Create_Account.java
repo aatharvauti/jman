@@ -79,32 +79,16 @@ public class Create_Account {
 		lblEmailAddress.setBounds(12, 186, 105, 15);
 		frame.getContentPane().add(lblEmailAddress);
 		
-		JLabel lblFirstName = new JLabel("First Name");
+		JLabel lblFirstName = new JLabel("Name");
 		lblFirstName.setBounds(12, 39, 82, 15);
 		frame.getContentPane().add(lblFirstName);
 		
-		JLabel lblSecondName = new JLabel("Second Name");
-		lblSecondName.setBounds(351, 39, 110, 15);
-		frame.getContentPane().add(lblSecondName);
-		
-		JLabel lblDob = new JLabel("D.O.B");
-		lblDob.setBounds(12, 75, 70, 15);
-		frame.getContentPane().add(lblDob);
 		
 		firstname = new JTextField();
 		firstname.setBounds(94, 39, 209, 19);
 		frame.getContentPane().add(firstname);
 		firstname.setColumns(10);
 		
-		secondname = new JTextField();
-		secondname.setBounds(491, 37, 187, 19);
-		frame.getContentPane().add(secondname);
-		secondname.setColumns(10);
-		
-		Dateofbirth = new JTextField();
-		Dateofbirth.setBounds(94, 75, 209, 19);
-		frame.getContentPane().add(Dateofbirth);
-		Dateofbirth.setColumns(10);
 		
 		Usern = new JTextField();
 		Usern.setBounds(94, 110, 209, 19);
@@ -127,6 +111,16 @@ public class Create_Account {
 		confpass = new JPasswordField();
 		confpass.setBounds(491, 149, 187, 19);
 		frame.getContentPane().add(confpass);
+		
+		JButton btnNewButton = new JButton("Back");
+		btnNewButton.setBounds(281, 230, 117, 25);
+		frame.getContentPane().add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Login_S Baack = new Login_S();
+				Login_S.main(null);
+		}
+		});
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
