@@ -1,26 +1,23 @@
 package vault;
 
+import java.sql.*;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import login.Login;
+
 public class Vault {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+    Connection con = null;
 
-
-	/**
-	 * Launch the application.
-	 */
+	//	Launch the Application
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -33,58 +30,63 @@ public class Vault {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
+	// Initialize
 	public Vault() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(200, 200, 500, 300);
+		frame.setBounds(200, 200, 525, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblDisplayData = new JLabel("Display data");
+		JLabel lblDisplayData = new JLabel("Vault");
 		lblDisplayData.setBounds(196, 13, 89, 15);
 		frame.getContentPane().add(lblDisplayData);
+		
+		JLabel lblVaultHeading = new JLabel();
+		lblVaultHeading.setText("ID          APPLICATION          USERNAME          PASSWORD          URL");
+		lblVaultHeading.setBounds(10, 45, 450, 15);
+		lblVaultHeading.setVisible(true);
+		frame.getContentPane().add(lblVaultHeading);
+
+				
 		
 		JLabel password = new JLabel("");
 		password.setBounds(12, 112, 162, 15);
 		frame.getContentPane().add(password);
-		
-		textField = new JTextField();
-		textField.setBounds(12, 40, 466, 19);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(12, 80, 466, 19);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(12, 120, 466, 19);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(12, 160, 466, 19);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(12, 200, 466, 19);
-		frame.getContentPane().add(textField_4);
-		textField_4.setColumns(10);
-		
-		textField_5 = new JTextField();
-		textField_5.setBounds(12, 240, 466, 19);
-		frame.getContentPane().add(textField_5);
-		textField_5.setColumns(10);
+
+		try
+        {
+			String usrname = Login.txtUsername.getText();
+			
+            Class.forName("com.mysql.jdbc.Driver");
+      
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/loginsystem", "root", "D4v13504wm");
+
+            Statement stmt = con.createStatement();  
+
+            ResultSet rs = stmt.executeQuery("SELECT * from "+usrname+"");  
+            int i = 0;
+            
+            while(rs.next())
+            {
+            	JLabel lblVaultContent = new JLabel();
+            	lblVaultContent.setBounds(10, 65 + i, 1000, 15);
+            	String snew = rs.getInt(1) + "\t\t" + rs.getString(2)+"\\t\\t"+rs.getString(3)+"\t\t"+rs.getString(4)+"\t\t"+rs.getString(5);
+            	lblVaultContent.setText(snew);
+            	lblVaultContent.setVisible(true);
+        		frame.getContentPane().add(lblVaultContent);
+        		i += 20;
+            }
+            con.close(); 
+        }
+
+        catch (SQLException | ClassNotFoundException e)
+        {
+            System.out.println(e);
+        }
 	}
 }
