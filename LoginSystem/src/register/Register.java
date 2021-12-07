@@ -119,8 +119,10 @@ public class Register {
 			public void actionPerformed(ActionEvent arg0) {
 				String passwor = pass.getText();
 				String confpasswor = confpass.getText();
+	
 				if(passwor.contentEquals(confpasswor)) {
-					
+					String username = Usern.getText();
+					String password = pass.getText();
 					try
 				    {
 				        Class.forName("com.mysql.jdbc.Driver");
@@ -128,40 +130,71 @@ public class Register {
 				        Connection con = DriverManager.getConnection(
 				            "jdbc:mysql://localhost:3306/loginsystem", "root", "D4v13504wm");
 
-				        Statement stmt = con.createStatement();  
+				        Statement stmt = con.createStatement();
+				        String sql = "SELECT * from `loginsystemtable` WHERE username='"+username+"'";
+				        ResultSet rs = stmt.executeQuery(sql);
+				        while(rs.next()) {
+				        	String snew = rs.getString(2);
+				        	if(username.contentEquals(snew)) {
+				        		JOptionPane.showMessageDialog(null,"The Username Already Exist in Data Base","Existing Error",JOptionPane.ERROR_MESSAGE);
+								pass.setText(null);
+								confpass.setText(null);
+								Usern.setText(null);
+				        	}
+				        
+				    
+					
+					else {    
+					try
+				    {
+				        Class.forName("com.mysql.jdbc.Driver");
+				  
+				        con = DriverManager.getConnection(
+				            "jdbc:mysql://localhost:3306/loginsystem", "root", "D4v13504wm");
 
-				        String username = Usern.getText();
-				        String password = pass.getText();
-
+				        stmt = con.createStatement();  
+				       
 				        stmt.executeUpdate("INSERT INTO `loginsystemtable` (`id`, `username`, `password`) VALUES (NULL, '"+username+"', '"+password+"');");
 				        stmt.executeUpdate("CREATE TABLE `loginsystem`.`"+username+"` ( `id` INT(200) NOT NULL AUTO_INCREMENT , `application name` VARCHAR(1000) NOT NULL , `username` VARCHAR(1000) NOT NULL , `password` VARCHAR(1000) NOT NULL , `url` VARCHAR(1000) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
-
+			            	
+				        
 
 //				        while(rs.next())  
 //				        	System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
 //				        
-				        con.close();
+				        
 				        Usern.setText(null);
 						pass.setText(null);
 						confpass.setText(null);
 						firstname.setText(null);
 						mail.setText(null);
+			            	
+				        
 
-				    }
+				        }
 
 				    catch (SQLException | ClassNotFoundException e)
 				    {
 				        System.out.println(e);
 				    }
-
 					
+				        }
+				        }
+				    
 					
+				        }
+					catch (SQLException | ClassNotFoundException e)
+				    {
+				        System.out.println(e);
+				    }
 				}
 				else {
 					JOptionPane.showMessageDialog(null,"Please re-enter the password","Password Error",JOptionPane.ERROR_MESSAGE);
 					pass.setText(null);
 					confpass.setText(null);
 			}
+				
+				
 		}
 		});
 		btnSubmit.setBounds(81, 230, 117, 25);

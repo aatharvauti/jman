@@ -3,6 +3,7 @@ package vault;
 import java.sql.*;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -55,13 +56,52 @@ public class Vault {
 		frame.getContentPane().add(lblVaultHeading);
 
 		JButton btnNewButton = new JButton("Back");
-		btnNewButton.setBounds(281, 230, 117, 25);
+		btnNewButton.setBounds(328, 232, 117, 25);
 		frame.getContentPane().add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setVisible(false);
 		}
 		});
+		
+		JButton Edit = new JButton("Edit");
+		Edit.setBounds(100, 232, 117, 25);
+		frame.getContentPane().add(Edit);
+		Edit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JLabel IdNumber = new JLabel("ID");
+				IdNumber.setFont(new Font("Bitstream Vera Sans", Font.BOLD, 15));
+				IdNumber.setBounds(62, 292, 20, 15);
+				frame.getContentPane().add(IdNumber);
+				IdNumber.setVisible(true);
+				
+				JTextField EditTextbox = new JTextField();
+				EditTextbox.setBounds(100, 290, 114, 19);
+				frame.getContentPane().add(EditTextbox);
+				EditTextbox.setVisible(true);
+				EditTextbox.setColumns(10);
+		}
+		});
+		
+		JButton Delete = new JButton("Delete");
+		Delete.setBounds(543, 232, 117, 25);
+		frame.getContentPane().add(Delete);
+		Delete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JLabel IDforDelte = new JLabel("ID");
+				IDforDelte.setFont(new Font("Bitstream Vera Sans", Font.BOLD, 15));
+				IDforDelte.setBounds(522, 292, 26, 15);
+				frame.getContentPane().add(IDforDelte);
+				IDforDelte.setVisible(true);
+				
+				JTextField Deletetextbox = new JTextField();
+				Deletetextbox.setBounds(546, 290, 114, 19);
+				frame.getContentPane().add(Deletetextbox);
+				Deletetextbox.setVisible(true);
+				Deletetextbox.setColumns(10);
+		}
+		});
+		
 		
 		JLabel password = new JLabel("");
 		password.setBounds(12, 112, 162, 15);
