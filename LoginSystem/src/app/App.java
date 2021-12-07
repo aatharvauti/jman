@@ -65,13 +65,13 @@ public class App {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Dialog", Font.BOLD, 12));
 		frame.getContentPane().setBackground(Color.CYAN);
-		frame.setBounds(200, 300, 900, 300);
+		frame.setBounds(200, 200, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblPasswordManager = new JLabel("Password Manager");
-		lblPasswordManager.setFont(new Font("Bitstream Charter", Font.BOLD, 17));
-		lblPasswordManager.setBounds(154, 12, 214, 15);
+		lblPasswordManager.setFont(new Font("Bitstream Charter", Font.BOLD, 13));
+		lblPasswordManager.setBounds(135, 12, 214, 15);
 		frame.getContentPane().add(lblPasswordManager);
 		
 		JLabel lblNewLabel = new JLabel("Application");
@@ -111,7 +111,16 @@ public class App {
 		frame.getContentPane().add(urllink);
 		urllink.setColumns(10);
 		
-		JButton btnAddMoreApplication = new JButton("Add Application");
+		JButton btnNewButton = new JButton("Close");
+		btnNewButton.setBounds(300, 205, 100, 25);
+		frame.getContentPane().add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.setVisible(false);
+		}
+		});
+		
+		JButton btnAddMoreApplication = new JButton("Add");
 		btnAddMoreApplication.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -148,7 +157,7 @@ public class App {
 			}
 		});
 		
-		btnAddMoreApplication.setBounds(23, 205, 226, 25);
+		btnAddMoreApplication.setBounds(15, 205, 100, 25);
 		frame.getContentPane().add(btnAddMoreApplication);
 		
 		JButton Displaycon = new JButton("Open Vault");
@@ -163,7 +172,7 @@ public class App {
 		});
 		
 		
-		Displaycon.setBounds(293, 205, 155, 25);
+		Displaycon.setBounds(145, 205, 125, 25);
 		frame.getContentPane().add(Displaycon);
 		
 		

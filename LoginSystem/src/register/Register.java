@@ -52,21 +52,21 @@ public class Register {
 	public void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.ORANGE);
-		frame.setBounds(200, 200, 700, 300);
+		frame.setBounds(200, 200, 500, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Create Account");
 		lblNewLabel.setFont(new Font("Bitstream Charter", Font.BOLD, 16));
-		lblNewLabel.setBounds(277, 12, 117, 15);
+		lblNewLabel.setBounds(171, 12, 117, 15);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds(12, 110, 82, 15);
-		frame.getContentPane().add(lblUsername);
+		JLabel lblUsrname = new JLabel("Username");
+		lblUsrname.setBounds(12, 79, 82, 15);
+		frame.getContentPane().add(lblUsrname);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(12, 151, 70, 15);
+		lblPassword.setBounds(12, 118, 70, 15);
 		frame.getContentPane().add(lblPassword);
 		
 		JLabel lblEmailAddress = new JLabel("Email Address");
@@ -76,34 +76,32 @@ public class Register {
 		JLabel lblFirstName = new JLabel("Name");
 		lblFirstName.setBounds(12, 39, 82, 15);
 		frame.getContentPane().add(lblFirstName);
-
-		// JTextField
 		
 		firstname = new JTextField();
-		firstname.setBounds(94, 39, 209, 19);
+		firstname.setBounds(158, 39, 209, 19);
 		frame.getContentPane().add(firstname);
 		firstname.setColumns(10);
 		
 		Usern = new JTextField();
-		Usern.setBounds(94, 110, 209, 19);
+		Usern.setBounds(158, 77, 209, 19);
 		frame.getContentPane().add(Usern);
 		Usern.setColumns(10);
 		
 		mail = new JTextField();
-		mail.setBounds(121, 186, 225, 19);
+		mail.setBounds(158, 186, 209, 19);
 		frame.getContentPane().add(mail);
 		mail.setColumns(10);
 		
 		pass = new JPasswordField();
-		pass.setBounds(100, 149, 203, 19);
+		pass.setBounds(158, 116, 209, 19);
 		frame.getContentPane().add(pass);
 		
 		JLabel lblNewLabel_1 = new JLabel("Confirm Password");
-		lblNewLabel_1.setBounds(351, 151, 128, 15);
+		lblNewLabel_1.setBounds(12, 151, 128, 15);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		confpass = new JPasswordField();
-		confpass.setBounds(491, 149, 187, 19);
+		confpass.setBounds(158, 149, 209, 19);
 		frame.getContentPane().add(confpass);
 		
 //		JButton btnNewButton = new JButton("Back");
@@ -147,8 +145,6 @@ public class Register {
 						pass.setText(null);
 						confpass.setText(null);
 						firstname.setText(null);
-						secondname.setText(null);
-						Dateofbirth.setText(null);
 						mail.setText(null);
 
 				    }
@@ -168,7 +164,16 @@ public class Register {
 			}
 		}
 		});
-		btnSubmit.setBounds(277, 230, 117, 25);
+		btnSubmit.setBounds(81, 230, 117, 25);
 		frame.getContentPane().add(btnSubmit);
+		
+		JButton btnNewButton = new JButton("Close");
+		btnNewButton.setBounds(281, 230, 117, 25);
+		frame.getContentPane().add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.setVisible(false);
+		}
+		});
 	}
 }

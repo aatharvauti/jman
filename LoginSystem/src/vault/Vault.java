@@ -4,9 +4,12 @@ import java.sql.*;
 
 import java.awt.EventQueue;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import login.Login;
 
@@ -37,7 +40,7 @@ public class Vault {
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(200, 200, 525, 300);
+		frame.setBounds(200, 200, 800, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -46,12 +49,19 @@ public class Vault {
 		frame.getContentPane().add(lblDisplayData);
 		
 		JLabel lblVaultHeading = new JLabel();
-		lblVaultHeading.setText("ID          APPLICATION          USERNAME          PASSWORD          URL");
+		lblVaultHeading.setText("ID        APPLICATION        USERNAME        PASSWORD        URL");
 		lblVaultHeading.setBounds(10, 45, 450, 15);
 		lblVaultHeading.setVisible(true);
 		frame.getContentPane().add(lblVaultHeading);
 
-				
+		JButton btnNewButton = new JButton("Back");
+		btnNewButton.setBounds(281, 230, 117, 25);
+		frame.getContentPane().add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.setVisible(false);
+		}
+		});
 		
 		JLabel password = new JLabel("");
 		password.setBounds(12, 112, 162, 15);
@@ -75,7 +85,7 @@ public class Vault {
             {
             	JLabel lblVaultContent = new JLabel();
             	lblVaultContent.setBounds(10, 65 + i, 1000, 15);
-            	String snew = rs.getInt(1) + "\t\t" + rs.getString(2)+"\\t\\t"+rs.getString(3)+"\t\t"+rs.getString(4)+"\t\t"+rs.getString(5);
+            	String snew = rs.getInt(1) + "         " + rs.getString(2)+"         "+rs.getString(3)+"         "+rs.getString(4)+"         "+rs.getString(5);
             	lblVaultContent.setText(snew);
             	lblVaultContent.setVisible(true);
         		frame.getContentPane().add(lblVaultContent);
