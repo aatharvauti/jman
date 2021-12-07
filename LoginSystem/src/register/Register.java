@@ -1,17 +1,17 @@
 package register;
 
 import java.awt.EventQueue;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.Color;
 import javax.swing.JPasswordField;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import java.sql.*;
 
@@ -135,7 +135,8 @@ public class Register {
 				        String username = Usern.getText();
 				        String password = pass.getText();
 
-				        stmt.executeUpdate("INSERT INTO `loginsystemtable` (`id`, `username`, `password`) VALUES (NULL, '"+username+"', '"+password+"');"); 
+				        stmt.executeUpdate("INSERT INTO `loginsystemtable` (`id`, `username`, `password`) VALUES (NULL, '"+username+"', '"+password+"');");
+				        stmt.executeUpdate("CREATE TABLE `loginsystem`.`"+username+"` ( `id` INT(200) NOT NULL AUTO_INCREMENT , `application name` VARCHAR(1000) NOT NULL , `username` VARCHAR(1000) NOT NULL , `password` VARCHAR(1000) NOT NULL , `url` VARCHAR(1000) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
 
 
 //				        while(rs.next())  

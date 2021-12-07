@@ -3,7 +3,9 @@ package login;
 import app.App;
 import register.Register;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -25,7 +27,7 @@ public class Login {
 	Connection con = null;
 
 	private JFrame frame;
-	private JTextField txtUsername;
+	public static JTextField txtUsername;
 	private JPasswordField txtPassword;
 
 
@@ -82,12 +84,12 @@ public class Login {
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
-				String password = txtPassword.getText();
-				String usrname = txtUsername.getText();
-
+				
 				try
 			    {
+
+					String password = txtPassword.getText();
+					String usrname = txtUsername.getText();
 
 					Class.forName("com.mysql.jdbc.Driver");
 			  
@@ -103,9 +105,11 @@ public class Login {
 			            if (usrname.equals(rs.getString("username")) && password.equals(rs.getString("password")))
 			            {
 		                	txtPassword.setText(null);
-							txtUsername.setText(null);
+//							txtUsername.setText(null);
 							App info = new App();
 							App.main(null);
+							
+							frame.setVisible(false);
 		                }
                         else
                         {
@@ -114,7 +118,7 @@ public class Login {
         					txtPassword.setText(null);
         					txtUsername.setText(null);
                   	    }
-		            }
+			        }
 			    
 			        con.close();
 			    }

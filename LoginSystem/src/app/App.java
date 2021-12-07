@@ -4,19 +4,26 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import login.Login;
 import vault.Vault;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
 
 public class App {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField Applica;
 	private JTextField Username1;
 	private JTextField Password2;
@@ -49,7 +56,8 @@ public class App {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
+		
 		JLabel DisplayField = new JLabel();
 		JLabel usern = new JLabel();
 		JLabel pass = new JLabel();
@@ -103,9 +111,36 @@ public class App {
 		frame.getContentPane().add(urllink);
 		urllink.setColumns(10);
 		
-		JButton btnAddMoreApplication = new JButton("Add More Application");
+		JButton btnAddMoreApplication = new JButton("Add Application");
 		btnAddMoreApplication.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+
+				try
+			    {
+					String usrname = Login.txtUsername.getText();
+					System.out.println("My username is " + usrname);
+					String Application = Applica.getText();
+					String AppUser = Username1.getText();
+					String AppPass = Password2.getText();
+					String AppUrl = urllink.getText();
+
+					Class.forName("com.mysql.jdbc.Driver");
+			  
+			        Connection con = DriverManager.getConnection(
+			            "jdbc:mysql://localhost:3306/loginsystem", "root", "D4v13504wm");
+
+			        Statement stmt = con.createStatement();
+			        stmt.executeUpdate("INSERT INTO `"+usrname+"` (`id`, `application name`, `username`, `password`, `url`) VALUES (NULL, '"+Application+"', '"+AppUser+"', '"+AppPass+"', '"+AppUrl+"')");
+			        
+			        con.close();
+			    }
+
+			    catch (SQLException | ClassNotFoundException e)
+			    {
+			        System.out.println(e);
+			    }
+
+
 				Applica.setText(null);
 				Username1.setText(null);
 				Password2.setText(null);
@@ -116,7 +151,7 @@ public class App {
 		btnAddMoreApplication.setBounds(23, 205, 226, 25);
 		frame.getContentPane().add(btnAddMoreApplication);
 		
-		JButton Displaycon = new JButton("Display Content");
+		JButton Displaycon = new JButton("Open Vault");
 		Displaycon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Vault Display = new Vault();
