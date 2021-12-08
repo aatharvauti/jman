@@ -104,16 +104,6 @@ public class Register {
 		confpass.setBounds(158, 149, 209, 19);
 		frame.getContentPane().add(confpass);
 		
-//		JButton btnNewButton = new JButton("Back");
-//		btnNewButton.setBounds(281, 230, 117, 25);
-//		frame.getContentPane().add(btnNewButton);
-//		btnNewButton.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent arg0) {
-//				Login_S Back = new Login_S();
-//				Login_S.main(null);
-//		}
-//		});
-		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

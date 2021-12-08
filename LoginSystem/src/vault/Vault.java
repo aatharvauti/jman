@@ -8,9 +8,12 @@ import edit.Edit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -46,6 +49,7 @@ public class Vault {
 		frame.setBounds(200, 200, 800, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setVisible(true);
 		
 		JLabel IdNumber = new JLabel("ID");
 		IdNumber.setFont(new Font("Bitstream Vera Sans", Font.BOLD, 15));
@@ -83,7 +87,6 @@ public class Vault {
 			public void actionPerformed(ActionEvent arg0) {
 				Edit Eddit = new Edit();
 				Eddit.main(null);
-				
 		}
 		});
 		
@@ -105,6 +108,7 @@ public class Vault {
 		try
 	        {
 				String usrname = Login.txtUsername.getText();
+
 	            Class.forName("com.mysql.jdbc.Driver");
 	      
 	            Connection con = DriverManager.getConnection(
@@ -112,23 +116,51 @@ public class Vault {
 
 	            Statement stmt = con.createStatement();  
 
-	            ResultSet rs = stmt.executeQuery("SELECT * from "+usrname+"");  
-	          
-	            String[] columnNames = {"ID", "APPLICATION","USERNAME","PASSWORD","URL"};
-	            while(rs.next())
-	            {
-	            	
-	              Object[][] data = {
-	            	         {rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)},
-	            	         };
-	              JTable table = new JTable(data, columnNames);
-	              JScrollPane scrollPane = new JScrollPane(table);
-	       	      scrollPane.setSize(600, 600);	       	      
-	       	      table.setPreferredScrollableViewportSize(new Dimension(1000,600));
-	       	      table.setFillsViewportHeight(true);
-	       	      frame.getContentPane().add(scrollPane);     
-	       	      frame.setVisible(true);
-	            }
+	            ResultSet rs = stmt.executeQuery("SELECT * from "+usrname+"");
+	            		
+        		String columns[] = { "ID", "Application", "Username", "Password", "URL" };
+        		String data[][] = new String[10][5];
+	            	    
+        		int i = 0;
+        		while (rs.next()) 
+        		{
+        			int tableID = rs.getInt(1);
+        	        String tableApp = rs.getString(2);
+        	        String tableUsername = rs.getString(3);
+        	        String tablePassword = rs.getString(4);
+        	        String tableURL = rs.getString(5);
+        	        
+        	        data[i][0] = tableID + "";
+        	        data[i][1] = tableApp;
+        	        data[i][2] = tableUsername;
+        	        data[i][3] = tablePassword;
+        	        data[i][4] = tableURL;
+        	        i++;
+        		}
+      
+//    			DefaultTableModel model = new DefaultTableModel(data, columns);
+//    			JTable table = new JTable(model);
+//    			table.setShowGrid(true);
+//				table.setShowVerticalLines(true);
+//				table.setVisible(true);
+//				JScrollPane pane = new JScrollPane(table);
+//				pane.setVisible(true);
+//				pane.setSize(600, 600);
+//				frame.getContentPane().add(pane);
+//				JPanel panel = new JPanel();
+//				panel.add(pane);
+//				panel.setVisible(true);
+//				table.setPreferredScrollableViewportSize(new Dimension(1000,600));
+//				table.setFillsViewportHeight(true);	
+        		
+              	JTable table = new JTable(data, columns);
+              	JScrollPane scrollPane = new JScrollPane(table);
+              	scrollPane.setSize(600, 600);	  
+              	frame.getContentPane().add(scrollPane);
+              	table.setPreferredScrollableViewportSize(new Dimension(1000,600));
+              	table.setFillsViewportHeight(true);
+              	frame.setVisible(true);
+	              	    
 	            con.close(); 
 	        
 	            }
@@ -136,6 +168,7 @@ public class Vault {
 	      catch (SQLException | ClassNotFoundException e)
 	        {
 	            System.out.println(e);
+	            e.printStackTrace();
 	        }
 	        
 	}

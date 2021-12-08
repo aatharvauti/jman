@@ -29,9 +29,7 @@ public class App {
 	private JTextField Password2;
 	private JTextField urllink;
 
-	/**
-	 * Launch the application.
-	 */
+// Launch
 	public static void main(String[] args) {
 		JLabel DisplayField;
 		EventQueue.invokeLater(new Runnable() {
@@ -46,16 +44,11 @@ public class App {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
+// Initialize
 	public App() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	public void initialize() {
 		
 		JLabel DisplayField = new JLabel();
@@ -117,7 +110,7 @@ public class App {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frame.setVisible(false);
-		}
+			}
 		});
 		
 		JButton btnAddMoreApplication = new JButton("Add");
@@ -163,18 +156,12 @@ public class App {
 		JButton Displaycon = new JButton("Open Vault");
 		Displaycon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Vault Display = new Vault();
-				Vault.main(null);
-				
-				
-				
+				Vault V = new Vault();
+				V.main(null);
 			}
-		});
-		
+		});	
 		
 		Displaycon.setBounds(145, 205, 125, 25);
-		frame.getContentPane().add(Displaycon);
-		
-		
+		frame.getContentPane().add(Displaycon);	
 	}
 }
