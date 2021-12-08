@@ -1,2 +1,7 @@
-/vault/
+/.classpath
+/.project
+/app/
 /edit/
+/login/
+/register/
+/vault/

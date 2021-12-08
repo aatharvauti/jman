@@ -19,9 +19,11 @@ import java.awt.event.ActionListener;
 
 import login.Login;
 
+
 public class Vault {
 
 	private JFrame frame;
+	public static JTextField EditTextbox;
     Connection con = null;
 
 	//	Launch the Application
@@ -31,7 +33,7 @@ public class Vault {
 			public void run() {
 				try {
 					Vault window = new Vault();
-					window.frame.setVisible(true);
+					window.frame.setVisible(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -85,8 +87,9 @@ public class Vault {
 		frame.getContentPane().add(Edit);
 		Edit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Edit Eddit = new Edit();
-				Eddit.main(null);
+				Edit Edit1 = new Edit();
+				//Edit1.main(null);
+				//EditTextbox.setText(null);
 		}
 		});
 		
@@ -95,8 +98,39 @@ public class Vault {
 		frame.getContentPane().add(Delete);
 		Delete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-		}
+				try
+			    {
+
+					int DeleteId = Integer.parseInt(Deletetextbox.getText());
+					
+					
+					String usrname = Login.txtUsername.getText();
+					Class.forName("com.mysql.jdbc.Driver");
+			  
+			        Connection con = DriverManager.getConnection(
+			            "jdbc:mysql://localhost:3306/loginsystem", "root", "D4v13504wm");
+
+			        Statement stmt = con.createStatement();
+			        stmt.executeUpdate("DELETE FROM `"+usrname+"` WHERE `"+usrname+"`.`id` = "+DeleteId+"");
+			        //"DELETE FROM `vivek` WHERE `vivek`.`id` = 3"
+			    
+			        con.close();
+			        frame.setVisible(false);
+			        Vault V = new Vault();
+					V.main(null);
+			        
+			        
+			        
+			        
+			    }
+
+			    catch (SQLException | ClassNotFoundException e)
+			    {
+			        System.out.println(e);
+			        e.printStackTrace();
+			    }
+			}
+		
 		});
 		
 		
@@ -155,9 +189,10 @@ public class Vault {
         		
               	JTable table = new JTable(data, columns);
               	JScrollPane scrollPane = new JScrollPane(table);
-              	scrollPane.setSize(600, 600);	  
+              	scrollPane.setSize(800, 500);	  
               	frame.getContentPane().add(scrollPane);
-              	table.setPreferredScrollableViewportSize(new Dimension(1000,600));
+              	//table.setPreferredScrollableViewportSize(new Dimension(1200,500));
+              	//table.setPreferredScrollableViewportSize(new Dimension(1200,600));
               	table.setFillsViewportHeight(true);
               	frame.setVisible(true);
 	              	    

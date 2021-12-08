@@ -157,7 +157,7 @@ public class App {
 		Displaycon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Vault V = new Vault();
-				V.main(null);
+				Vault.main(null);
 			}
 		});	
 		

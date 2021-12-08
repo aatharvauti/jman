@@ -144,5 +144,7 @@ public class Login {
 
 		btnNewButton_1.setBounds(225, 190, 175, 25);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		//frame.pack();
 	}
 }
