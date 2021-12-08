@@ -24,7 +24,6 @@ public class Register {
 	private JTextField secondname;
 	private JTextField Dateofbirth;
 	private JTextField Usern;
-	private JTextField mail;
 	private JPasswordField pass;
 	private JPasswordField confpass;
 
@@ -68,10 +67,7 @@ public class Register {
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setBounds(12, 118, 70, 15);
 		frame.getContentPane().add(lblPassword);
-		
-		JLabel lblEmailAddress = new JLabel("Email Address");
-		lblEmailAddress.setBounds(12, 186, 105, 15);
-		frame.getContentPane().add(lblEmailAddress);
+
 		
 		JLabel lblFirstName = new JLabel("Name");
 		lblFirstName.setBounds(12, 39, 82, 15);
@@ -87,10 +83,6 @@ public class Register {
 		frame.getContentPane().add(Usern);
 		Usern.setColumns(10);
 		
-		mail = new JTextField();
-		mail.setBounds(158, 186, 209, 19);
-		frame.getContentPane().add(mail);
-		mail.setColumns(10);
 		
 		pass = new JPasswordField();
 		pass.setBounds(158, 116, 209, 19);
@@ -125,54 +117,46 @@ public class Register {
 				        ResultSet rs = stmt.executeQuery(sql);
 				        while(rs.next()) {
 				        	String snew = rs.getString(2);
+				        	
 				        	if(username.contentEquals(snew)) {
 				        		JOptionPane.showMessageDialog(null,"The Username Already Exist in Data Base","Existing Error",JOptionPane.ERROR_MESSAGE);
 								pass.setText(null);
 								confpass.setText(null);
 								Usern.setText(null);
 				        	}
+				        	}
+				        	if(passwor.contentEquals(confpasswor)) {    
+				        		try{
 				        
-				    
-					
-					else {    
-					try
-				    {
-				        Class.forName("com.mysql.jdbc.Driver");
+				        			Class.forName("com.mysql.jdbc.Driver");
 				  
-				        con = DriverManager.getConnection(
-				            "jdbc:mysql://localhost:3306/loginsystem", "root", "D4v13504wm");
+				        			con = DriverManager.getConnection(
+				        					"jdbc:mysql://localhost:3306/loginsystem", "root", "D4v13504wm");
 
-				        stmt = con.createStatement();  
+				        			stmt = con.createStatement();  
 				       
-				        stmt.executeUpdate("INSERT INTO `loginsystemtable` (`id`, `username`, `password`) VALUES (NULL, '"+username+"', '"+password+"');");
-				        stmt.executeUpdate("CREATE TABLE `loginsystem`.`"+username+"` ( `id` INT(200) NOT NULL AUTO_INCREMENT , `application name` VARCHAR(1000) NOT NULL , `username` VARCHAR(1000) NOT NULL , `password` VARCHAR(1000) NOT NULL , `url` VARCHAR(1000) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
+				        			stmt.executeUpdate("INSERT INTO `loginsystemtable` (`id`, `username`, `password`) VALUES (NULL, '"+username+"', '"+password+"');");
+				        			stmt.executeUpdate("CREATE TABLE `loginsystem`.`"+username+"` ( `id` INT(200) NOT NULL AUTO_INCREMENT , `application name` VARCHAR(1000) NOT NULL , `username` VARCHAR(1000) NOT NULL , `password` VARCHAR(1000) NOT NULL , `url` VARCHAR(1000) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;");
 			            	
-				        
-
-//				        while(rs.next())  
-//				        	System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
-//				        
-				        
-				        Usern.setText(null);
-						pass.setText(null);
-						confpass.setText(null);
-						firstname.setText(null);
-						mail.setText(null);
-			            	
-				        
-
+				        			//con.close();
+				        			Usern.setText(null);
+				        			pass.setText(null);
+				        			confpass.setText(null);
+				        			firstname.setText(null);
+				
 				        }
 
-				    catch (SQLException | ClassNotFoundException e)
-				    {
-				        System.out.println(e);
-				    }
+				        		catch (SQLException | ClassNotFoundException e)
+				        		{
+				        			System.out.println(e);
+				        		}
 					
 				        }
 				        }
+				        //con.close();
 				    
 					
-				        }
+				        
 					catch (SQLException | ClassNotFoundException e)
 				    {
 				        System.out.println(e);

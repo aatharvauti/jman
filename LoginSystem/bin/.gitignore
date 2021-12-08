@@ -1,7 +1,3 @@
-/.classpath
-/.project
-/app/
-/edit/
-/login/
-/register/
 /vault/
+/register/
+/login/

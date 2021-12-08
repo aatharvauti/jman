@@ -111,10 +111,10 @@ public class Login {
 							
 							frame.setVisible(false);
 		                }
-                        else
+			            else
                         {
                         	System.out.println("PASS");
-        					JOptionPane.showMessageDialog(null,"Invalid Login Details PASS","Login Error",JOptionPane.ERROR_MESSAGE);
+        					JOptionPane.showMessageDialog(null,"Invalid Login Details","Login Error",JOptionPane.ERROR_MESSAGE);
         					txtPassword.setText(null);
         					txtUsername.setText(null);
                   	    }

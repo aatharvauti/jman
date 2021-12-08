@@ -4,7 +4,6 @@ import java.sql.*;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import edit.Edit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -52,16 +51,7 @@ public class Vault {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
-		
-		JLabel IdNumber = new JLabel("ID");
-		IdNumber.setFont(new Font("Bitstream Vera Sans", Font.BOLD, 15));
-		IdNumber.setBounds(65, 383, 20, 25);
-		frame.getContentPane().add(IdNumber);
-		
-		JTextField EditTextbox = new JTextField();
-		EditTextbox.setBounds(103, 386, 41, 19);
-		frame.getContentPane().add(EditTextbox);
-		EditTextbox.setColumns(10);
+
 		
 		JLabel IDforDelte = new JLabel("ID");
 		IDforDelte.setFont(new Font("Bitstream Vera Sans", Font.BOLD, 15));
@@ -74,7 +64,7 @@ public class Vault {
 		Deletetextbox.setColumns(10);
 
 		JButton btnNewButton = new JButton("Back");
-		btnNewButton.setBounds(293, 420, 117, 25);
+		btnNewButton.setBounds(66, 420, 150, 25);
 		frame.getContentPane().add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -82,19 +72,9 @@ public class Vault {
 		}
 		});
 		
-		JButton Edit = new JButton("Edit");
-		Edit.setBounds(66, 420, 78, 25);
-		frame.getContentPane().add(Edit);
-		Edit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Edit Edit1 = new Edit();
-				//Edit1.main(null);
-				//EditTextbox.setText(null);
-		}
-		});
 		
 		JButton Delete = new JButton("Delete");
-		Delete.setBounds(543, 420, 89, 25);
+		Delete.setBounds(543, 420, 150, 25);
 		frame.getContentPane().add(Delete);
 		Delete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
